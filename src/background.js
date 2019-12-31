@@ -48,6 +48,20 @@ export default class Background {
             const message = InternalMessage.fromJson(request);
             this.dispenseMessage(sendResponse, message);
         })
+
+      chrome.runtime.onMessageExternal.addListener(
+        function(request, sender, sendResponse) {
+          console.log("Hi, there is message from the website from " + JSON.stringify(sender) + " :" + JSON.stringify(request));
+          var data = request.data;
+          if (request.cmd === "getAccountNames") {
+            sendResponse({status: true, data:['u1', 'u2', 'storage']});
+            return;
+          } else if (request.cmd === "signTransaction") {
+            sendResponse({status: true, data:['data', 'eosio']});
+            return;
+          }
+          sendResponse({state: true, data: "hello back from msg from " + JSON.stringify(sender)});
+      });
     }
 
     /***
@@ -57,6 +71,7 @@ export default class Background {
      */
     dispenseMessage(sendResponse, message){
         Background.checkAutoLock();
+        console.log("Receive: " + message.type);
         switch(message.type){
             case InternalMessageTypes.SET_SEED:                         Background.setSeed(sendResponse, message.payload); break;
             case InternalMessageTypes.SET_TIMEOUT:                      Background.setTimeout(sendResponse, message.payload); break;

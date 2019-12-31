@@ -27,6 +27,10 @@
   "web_accessible_resources": [
     "inject.js"
   ],
+  "externally_connectable": {
+     "matches": 
+        ["*://ezblock.io/*", "*://127.0.0.1/*", "*://localhost/*"]
+  },
   "background":{
     "scripts":[
       "background.js"
