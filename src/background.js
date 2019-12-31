@@ -59,7 +59,6 @@ export default class Background {
         Background.checkAutoLock();
         switch(message.type){
             case InternalMessageTypes.SET_SEED:                         Background.setSeed(sendResponse, message.payload); break;
-            case InternalMessageTypes.GET_SEED:                         Background.getSeed(sendResponse, message.payload); break;
             case InternalMessageTypes.SET_TIMEOUT:                      Background.setTimeout(sendResponse, message.payload); break;
             case InternalMessageTypes.IS_UNLOCKED:                      Background.isUnlocked(sendResponse); break;
             case InternalMessageTypes.LOAD:                             Background.load(sendResponse); break;
@@ -110,10 +109,6 @@ export default class Background {
     static setSeed(sendResponse, _seed){
         seed = _seed;
         sendResponse(true);
-    }
-
-    static getSeed(sendResponse){
-        sendResponse(seed);
     }
 
     /***

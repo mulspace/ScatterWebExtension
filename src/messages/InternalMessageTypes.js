@@ -1,5 +1,4 @@
 export const SET_SEED = 'setSeed';
-export const GET_SEED = 'getSeed';
 export const SET_TIMEOUT = 'setTimeout';
 export const IS_UNLOCKED = 'isUnlocked';
 export const LOAD = 'load';
